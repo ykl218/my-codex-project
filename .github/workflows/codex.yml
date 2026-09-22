@@ -24,4 +24,5 @@ jobs:
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           prompt: ${{ inputs.prompt }}
-          safety-strategy: drop-sudo
+          safety-strategy: unprivileged-user
+          codex-user: runner
