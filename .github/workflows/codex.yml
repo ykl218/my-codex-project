@@ -1,0 +1,27 @@
+name: Codex automation
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: Task for Codex
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  codex:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Run Codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: ${{ inputs.prompt }}
+          safety-strategy: drop-sudo
